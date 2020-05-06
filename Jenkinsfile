@@ -22,6 +22,14 @@ pipeline {
       }
     }
 
+    stage('Deliver') {
+      steps {
+        sh './jenkins/scripts/deliver.sh'
+        input 'Finished using this website? (Click "Proceed" to continue)'
+        sh './jenkins/scripts/kill.sh'
+      }
+    }
+
   }
   environment {
     Stage = 'Build'
